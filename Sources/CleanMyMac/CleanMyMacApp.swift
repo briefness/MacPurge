@@ -188,7 +188,7 @@ final class AppModel: ObservableObject {
         isMovingAnalyzerEntry || isOptimizing || isScanningApplications || isUninstalling
     }
     var selectedUninstallCandidates: [UninstallCandidate] {
-        installedApplications.flatMap { $0.candidates }.filter(\.isSelected)
+        installedApplications.flatMap { $0.candidates }.filter { $0.isSelected && $0.canRemove }
     }
     var selectedUninstallSize: Double { selectedUninstallCandidates.reduce(0) { $0 + $1.size } }
     var selectedUninstallCount: Int { selectedUninstallCandidates.count }
@@ -712,7 +712,12 @@ final class AppModel: ObservableObject {
         uninstallMessage = nil
         uninstallTask = Task { @MainActor [weak self] in
             guard let self else { return }
-            let result = await Task.detached(priority: .utility) { UninstallService.scan() }.value
+            let worker = Task.detached(priority: .utility) { UninstallService.scan() }
+            let result = await withTaskCancellationHandler(operation: {
+                await worker.value
+            }, onCancel: {
+                worker.cancel()
+            })
             guard !Task.isCancelled else {
                 self.isScanningApplications = false
                 self.uninstallMessage = "已停止应用扫描，未修改任何文件。"

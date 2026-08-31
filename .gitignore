@@ -1,0 +1,47 @@
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon\r\r
+._*
+.Spotlight-V100
+.Trashes
+
+# Swift / Swift Package Manager (SPM)
+.build/
+.swiftpm/
+Packages/
+Package.pins
+Package.resolved
+
+# Xcode & Apple Build Artifacts
+DerivedData/
+*.xcodeproj/*xcuserdata*
+*.xcodeproj/xcuserdata/
+*.xcworkspace/*xcuserdata*
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+*.app
+*.dmg
+*.pkg
+*.ipa
+*.dSYM/
+
+# Rust (rust-core)
+target/
+**/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDEs & Editors
+.idea/
+.vscode/
+*.swp
+*~
+.codex/
+.gemini/
+
+# Logs & Environment
+*.log
+.env
+.env.local

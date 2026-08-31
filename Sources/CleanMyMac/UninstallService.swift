@@ -82,8 +82,11 @@ enum UninstallService {
                 let isSystem = bundleIdentifier.hasPrefix("com.apple.") || canonical.hasPrefix("/System/")
                 let running = NSWorkspace.shared.runningApplications.contains { $0.bundleIdentifier == bundleIdentifier }
                 let size = bytesToGB(directorySize(url, deadline: deadline).bytes)
-                let candidates = isSystem ? [blockedApplicationCandidate(url: url, canonical: canonical, size: size, bundleIdentifier: bundleIdentifier)] :
+                var candidates = isSystem ? [blockedApplicationCandidate(url: url, canonical: canonical, size: size, bundleIdentifier: bundleIdentifier)] :
                     residualCandidates(for: url, canonical: canonical, bundleIdentifier: bundleIdentifier, applicationSize: size, deadline: deadline)
+                if running, !isSystem, let first = candidates.first {
+                    candidates[0] = UninstallCandidate(id: first.id, name: first.name, path: first.path, canonicalPath: first.canonicalPath, category: first.category, size: first.size, evidence: "应用当前正在运行；请先退出应用后再卸载", risk: .review, resourceIdentifier: first.resourceIdentifier, isApplicationBundle: first.isApplicationBundle, scanWarning: first.scanWarning, isSelected: false)
+                }
                 applications.append(InstalledApplication(
                     id: canonical,
                     name: appName,
@@ -115,31 +118,31 @@ enum UninstallService {
         var movedURLs: [URL] = []
         for candidate in selected.sorted(by: { $0.path.count < $1.path.count }) {
             guard candidate.canRemove else {
-                failures.append("(candidate.path)：该项目未通过安全检查")
+                failures.append("\(candidate.path)：该项目未通过安全检查")
                 continue
             }
             let expanded = (candidate.path as NSString).expandingTildeInPath
             guard fileManager.fileExists(atPath: expanded) else {
-                failures.append("(candidate.path)：路径已不存在")
+                failures.append("\(candidate.path)：路径已不存在")
                 continue
             }
             let url = URL(fileURLWithPath: expanded)
             guard !UninstallPathPolicy.isSymbolicLink(url) else {
-                failures.append("(candidate.path)：符号链接不允许卸载")
+                failures.append("\(candidate.path)：符号链接不允许卸载")
                 continue
             }
             let canonical = UninstallPathPolicy.canonicalPath(expanded)
             guard canonical == candidate.canonicalPath else {
-                failures.append("(candidate.path)：扫描后路径发生变化")
+                failures.append("\(candidate.path)：扫描后路径发生变化")
                 continue
             }
             if let reason = CleanupPathPolicy.protectionReason(for: canonical, protectedPaths: protectedPaths) {
-                failures.append("(candidate.path)：(reason)")
+                failures.append("\(candidate.path)：\(reason)")
                 continue
             }
             if let identifier = candidate.resourceIdentifier,
                UninstallPathPolicyResource.identifier(for: url) != identifier {
-                failures.append("(candidate.path)：文件在扫描后已被替换")
+                failures.append("\(candidate.path)：文件在扫描后已被替换")
                 continue
             }
             if movedURLs.contains(where: { canonical == $0.path || canonical.hasPrefix($0.path + "/") }) {
@@ -151,7 +154,7 @@ enum UninstallService {
                 movedIDs.insert(candidate.id)
                 movedSize += candidate.size
                 movedURLs.append(URL(fileURLWithPath: canonical))
-            } catch { failures.append("(candidate.path)：(error.localizedDescription)") }
+            } catch { failures.append("\(candidate.path)：\(error.localizedDescription)") }
         }
         appendResult(to: reportURL, movedCount: movedIDs.count, movedSize: movedSize, failures: failures)
         return .success(RemovalResult(movedIDs: movedIDs, movedSize: movedSize, failures: failures, reportURL: reportURL))
@@ -224,7 +227,7 @@ enum UninstallService {
 
     private static func appendResult(to url: URL, movedCount: Int, movedSize: Double, failures: [String]) {
         guard let handle = try? FileHandle(forWritingTo: url) else { return }
-        defer { try? handle.close() }; try? handle.seekToEnd()
+        defer { try? handle.close() }; _ = try? handle.seekToEnd()
         let lines = ["", "执行结果", "成功移入废纸篓：\(movedCount)", String(format: "实际处理：%.2f GB", movedSize), "失败项目：\(failures.count)"] + failures.map { "- \($0)" }
         try? handle.write(contentsOf: (lines.joined(separator: "\n") + "\n").data(using: .utf8) ?? Data())
     }

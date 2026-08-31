@@ -21,5 +21,11 @@
     "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests~partial.swiftmodule",
     "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.swiftdeps",
     "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/UninstallSafetyTests.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/UninstallSafetyTests.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/UninstallSafetyTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/UninstallSafetyTests.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/UninstallSafetyTests.dia"
   }
 }

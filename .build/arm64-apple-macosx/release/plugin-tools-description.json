@@ -311,6 +311,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/UninstallSafetyTests.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
         },
         {
@@ -328,7 +332,8 @@
       "objects" : [
         "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupRecommendationTests.swift.o",
         "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSafetyTests.swift.o",
-        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.swift.o"
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/UninstallSafetyTests.swift.o"
       ],
       "otherArguments" : [
         "-target",
@@ -394,6 +399,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/UninstallSafetyTests.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMacTests.swiftmodule"
         }
       ],
@@ -401,7 +410,8 @@
       "sources" : [
         "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupRecommendationTests.swift",
         "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSafetyTests.swift",
-        "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift"
+        "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift",
+        "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/UninstallSafetyTests.swift"
       ],
       "tempsPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build",
       "wholeModuleOptimization" : true
@@ -545,6 +555,7 @@
       "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupRecommendationTests.swift",
       "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSafetyTests.swift",
       "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift",
+      "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/UninstallSafetyTests.swift",
       "-I",
       "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules",
       "-target",
@@ -807,6 +818,10 @@
         {
           "kind" : "file",
           "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/UninstallSafetyTests.swift.o"
         }
       ],
       "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.product/Objects.LinkFileList"
@@ -829,6 +844,10 @@
         {
           "kind" : "file",
           "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/UninstallSafetyTests.swift"
         }
       ],
       "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/sources"
