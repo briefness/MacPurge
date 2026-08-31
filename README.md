@@ -18,25 +18,22 @@
 | 优化维护 | 展示真实系统指标，并在本机存在对应 CLI 时调用受支持的维护命令 |
 | 保护列表 | 配置永不触碰的路径 |
 
-## 软件截图
+## 界面预览
 
-截图目录位于 [`docs/screenshots/`](docs/screenshots/)，以下图片来自应用实际运行界面：
-
-- `overview.png`：总览
-- `clean.png`：清理空间
-- `uninstall.png`：应用卸载
-- `analyze.png`：空间透镜
+以下截图来自应用实际运行界面，完整图片保存在 [`docs/screenshots/`](docs/screenshots/)：
 
 <p align="center">
   <img src="docs/screenshots/overview.png" alt="总览" width="49%" />
   <img src="docs/screenshots/clean.png" alt="清理空间" width="49%" />
 </p>
+<p align="center"><sub>总览 · 清理空间</sub></p>
 <p align="center">
   <img src="docs/screenshots/uninstall.png" alt="应用卸载" width="49%" />
   <img src="docs/screenshots/analyze.png" alt="空间透镜" width="49%" />
 </p>
+<p align="center"><sub>应用卸载 · 空间透镜</sub></p>
 
-截图建议使用统一窗口尺寸，并遮挡个人文件名、路径和其他隐私信息。
+截图使用统一窗口尺寸，并已注意遮挡个人文件名、路径和其他隐私信息。
 
 ### 应用卸载的安全边界
 
