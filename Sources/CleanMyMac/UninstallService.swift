@@ -136,6 +136,12 @@ enum UninstallService {
                 failures.append("\(candidate.path)：扫描后路径发生变化")
                 continue
             }
+            if candidate.isApplicationBundle,
+               let bundleIdentifier = Bundle(url: URL(fileURLWithPath: canonical))?.bundleIdentifier,
+               NSWorkspace.shared.runningApplications.contains(where: { $0.bundleIdentifier == bundleIdentifier }) {
+                failures.append("\(candidate.path)：应用仍在运行，请先退出应用后再卸载")
+                continue
+            }
             if let reason = CleanupPathPolicy.protectionReason(for: canonical, protectedPaths: protectedPaths) {
                 failures.append("\(candidate.path)：\(reason)")
                 continue

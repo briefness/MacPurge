@@ -17,6 +17,8 @@ Completed:
 - Added bounded, cancellable background scans; removed automatic recursive startup storage scans; stopped recursive traversal at volume boundaries.
 - Made Trash default to no selection, moved permanent deletion off the main thread, and serialized filesystem and optimization operations.
 - Recommendation selection now requires both a safe review level and the configured artifact age.
+- Added an independent Application Uninstall module: real scans of `/Applications` and `~/Applications`, Bundle ID-based residual discovery, per-path risk/evidence display, running-app protection, resource identity revalidation, recoverable Trash moves, and uninstall reports.
+- System apps, symbolic links, shared/uncertain paths, incomplete reads, and unreadable identities fail closed; recommended uninstall selection only includes the app bundle and rebuildable caches.
 
 Preserved invariants:
 - Native SwiftUI/AppKit desktop application.
@@ -25,11 +27,11 @@ Preserved invariants:
 - Existing four-level cleanup hierarchy and Chinese UI remain.
 
 Validation completed 2026-08-31:
-- `swift test`: 18 tests passed.
+- `swift test`: 21 tests passed, including uninstall path safety coverage.
 - `swift build -c release`: passed.
 - `cargo test`: passed, but rust-core currently contains no Rust tests and is not linked.
-- `./scripts/package-app.sh`: generated CleanMyMac.app.
-- `codesign --verify --deep --strict --verbose=2 CleanMyMac.app`: passed with ad-hoc arm64 signature.
+- `./scripts/package-app.sh`: generated 清爽 Mac.app.
+- `codesign --verify --deep --strict --verbose=2 清爽 Mac.app`: passed with ad-hoc arm64 signature.
 - Static scan found no mock/demo/TODO/commercial-payment markers.
 
 Remaining risk:
