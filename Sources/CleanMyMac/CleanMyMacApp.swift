@@ -64,6 +64,7 @@ private struct TrashDeletionOutcome: Sendable {
 private struct TrashScanResult: Sendable {
     let entries: [TrashEntry]
     let wasLimited: Bool
+    let accessDenied: Bool
 }
 
 private struct AnalyzerMoveOutcome: Sendable {
@@ -136,6 +137,7 @@ final class AppModel: ObservableObject {
     @Published var trashEntries: [TrashEntry] = []
     @Published var isScanningTrash = false
     @Published var trashMessage: String?
+    @Published var trashAccessDenied = false
     @Published var showEmptyTrashConfirmation = false
     @Published var isDeletingTrash = false
     @Published var isMovingAnalyzerEntry = false
@@ -949,6 +951,7 @@ final class AppModel: ObservableObject {
         }
         isScanningTrash = true
         trashMessage = nil
+        trashAccessDenied = false
         trashScanTask = Task { @MainActor [weak self] in
             guard let self else { return }
             let worker = Task.detached(priority: .utility) { Self.readTrashEntries() }
@@ -964,9 +967,12 @@ final class AppModel: ObservableObject {
                 return
             }
             trashEntries = result.entries
+            trashAccessDenied = result.accessDenied
             isScanningTrash = false
             if result.wasLimited {
                 trashMessage = "废纸篓扫描达到 30 秒安全上限，只显示已经读取的项目。"
+            } else if result.accessDenied {
+                trashMessage = "无法读取当前账号的废纸篓目录。请在系统设置中授予“完全磁盘访问权限”后重新扫描。"
             } else if trashEntries.isEmpty {
                 trashMessage = "废纸篓为空，或当前账号没有可读取的项目。"
             }
@@ -1072,9 +1078,13 @@ final class AppModel: ObservableObject {
         }
         var entries: [TrashEntry] = []
         var wasLimited = false
+        var accessDenied = false
         let deadline = Date().addingTimeInterval(30)
         rootLoop: for (root, volumeName) in roots {
-            guard let urls = try? fileManager.contentsOfDirectory(at: root, includingPropertiesForKeys: [.fileResourceIdentifierKey, .isSymbolicLinkKey], options: []) else { continue }
+            guard let urls = try? fileManager.contentsOfDirectory(at: root, includingPropertiesForKeys: [.fileResourceIdentifierKey, .isSymbolicLinkKey], options: []) else {
+                if fileManager.fileExists(atPath: root.path) { accessDenied = true }
+                continue
+            }
             for url in urls {
                 if Task.isCancelled || Date() >= deadline {
                     wasLimited = true
@@ -1095,7 +1105,7 @@ final class AppModel: ObservableObject {
                 ))
             }
         }
-        return TrashScanResult(entries: entries.sorted { $0.size > $1.size }, wasLimited: wasLimited)
+        return TrashScanResult(entries: entries.sorted { $0.size > $1.size }, wasLimited: wasLimited, accessDenied: accessDenied)
     }
 
     private nonisolated static func isTrashPath(_ path: String) -> Bool {

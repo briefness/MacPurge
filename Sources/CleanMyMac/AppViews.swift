@@ -847,10 +847,18 @@ struct TrashView: View {
                     LazyVStack(spacing: 8) {
                         if model.trashEntries.isEmpty {
                             VStack(spacing: 10) {
-                                Image(systemName: "trash").font(.system(size: 32)).foregroundStyle(.secondary)
-                                Text("没有发现废纸篓项目").font(.system(size: 15, weight: .semibold))
-                                Text("如果废纸篓并非空，可能需要在系统设置中授予完全磁盘访问权限。")
+                                Image(systemName: model.trashAccessDenied ? "lock.trianglebadge.exclamationmark" : "trash")
+                                    .font(.system(size: 32)).foregroundStyle(model.trashAccessDenied ? Color.orange : Color.secondary)
+                                Text(model.trashAccessDenied ? "无法读取废纸篓" : "没有发现废纸篓项目")
+                                    .font(.system(size: 15, weight: .semibold))
+                                Text(model.trashAccessDenied ? "macOS 拒绝读取当前账号的废纸篓目录；这不代表废纸篓为空。" : "当前账号的废纸篓目录为空。")
                                     .font(.system(size: 11)).foregroundStyle(.secondary)
+                                if model.trashAccessDenied {
+                                    Button { model.openSystemSettings() } label: {
+                                        Label("打开完全磁盘访问权限", systemImage: "lock.open")
+                                    }
+                                    .buttonStyle(.borderedProminent).tint(.orange).foregroundStyle(.black).controlSize(.small)
+                                }
                             }
                             .frame(maxWidth: .infinity).padding(50)
                         } else {
