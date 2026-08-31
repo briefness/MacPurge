@@ -1,0 +1,67 @@
+{
+  "": {
+    "dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMac.d",
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMac.o",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/primary.swiftdeps"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppModels.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppViews.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanMyMacApp.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupRecommendation.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupSafety.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/PathDisplay.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/ProductIdentity.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/StorageAnalyzer.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallModels.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels.dia"
+  },
+  "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallService.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService.dia"
+  }
+}

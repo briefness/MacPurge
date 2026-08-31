@@ -1,0 +1,13 @@
+{
+  "": {
+    "dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/CleanMyMacPackageTests.d",
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/CleanMyMacPackageTests.o",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/primary.swiftdeps"
+  },
+  "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.derived/runner.swift": {
+    "object": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/runner.dia"
+  }
+}

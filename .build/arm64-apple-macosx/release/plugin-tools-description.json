@@ -1,0 +1,851 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.xctest/Contents/MacOS/CleanMyMacPackageTests",
+      "packagePath" : "/Users/lucas/Desktop/cleanmymac",
+      "productName" : "CleanMyMacPackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.CleanMyMac-arm64-apple-macosx-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/sources",
+      "importPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppViews.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanMyMacApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupRecommendation.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupSafety.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/PathDisplay.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/ProductIdentity.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/StorageAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "CleanMyMac",
+      "moduleOutputPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMac.swiftmodule",
+      "objects" : [
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "10",
+        "-serialize-diagnostics",
+        "-O",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "CleanMyMac_main",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "cleanmymac"
+      ],
+      "outputFileMapPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMac.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppModels.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppViews.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanMyMacApp.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupRecommendation.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupSafety.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/PathDisplay.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/ProductIdentity.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/StorageAnalyzer.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallModels.swift",
+        "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallService.swift"
+      ],
+      "tempsPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build",
+      "wholeModuleOptimization" : true
+    },
+    "C.CleanMyMacPackageTests-arm64-apple-macosx-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/sources",
+      "importPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMacTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CleanMyMacPackageTests",
+      "moduleOutputPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMacPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "10",
+        "-serialize-diagnostics",
+        "-O",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/include/CleanMyMacPackageTests-Swift.h",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "cleanmymac"
+      ],
+      "outputFileMapPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMacPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build",
+      "wholeModuleOptimization" : true
+    },
+    "C.CleanMyMacTests-arm64-apple-macosx-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/sources",
+      "importPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupRecommendationTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSafetyTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CleanMyMacTests",
+      "moduleOutputPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMacTests.swiftmodule",
+      "objects" : [
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupRecommendationTests.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSafetyTests.swift.o",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-whole-module-optimization",
+        "-num-threads",
+        "10",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/index/store",
+        "-O",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "cleanmymac"
+      ],
+      "outputFileMapPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupRecommendationTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSafetyTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules/CleanMyMacTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupRecommendationTests.swift",
+        "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSafetyTests.swift",
+        "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift"
+      ],
+      "tempsPath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build",
+      "wholeModuleOptimization" : true
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "CleanMyMac" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanMyMac",
+      "-package-name",
+      "cleanmymac",
+      "-c",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppModels.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppViews.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanMyMacApp.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupRecommendation.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupSafety.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/PathDisplay.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/ProductIdentity.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/StorageAnalyzer.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallModels.swift",
+      "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallService.swift",
+      "-I",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "10",
+      "-serialize-diagnostics",
+      "-O",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "CleanMyMac_main",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "cleanmymac",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanMyMacPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanMyMacPackageTests",
+      "-package-name",
+      "cleanmymac",
+      "-c",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "10",
+      "-serialize-diagnostics",
+      "-O",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/include/CleanMyMacPackageTests-Swift.h",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "cleanmymac",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CleanMyMacTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CleanMyMacTests",
+      "-package-name",
+      "cleanmymac",
+      "-c",
+      "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupRecommendationTests.swift",
+      "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSafetyTests.swift",
+      "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift",
+      "-I",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-whole-module-optimization",
+      "-num-threads",
+      "10",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/index/store",
+      "-O",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "cleanmymac",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "CleanMyMac" : [
+
+    ],
+    "CleanMyMacPackageTests" : [
+      "CleanMyMacTests",
+      "CleanMyMac"
+    ],
+    "CleanMyMacTests" : [
+      "CleanMyMac"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/AppViews.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanMyMacApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupRecommendation.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/CleanupSafety.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/PathDisplay.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/ProductIdentity.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/StorageAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Sources/CleanMyMac/UninstallService.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/sources"
+    },
+    "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.product/Objects.LinkFileList"
+    },
+    "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/sources"
+    },
+    "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/AppViews.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanMyMacApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupRecommendation.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/CleanupSafety.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/PathDisplay.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/ProductIdentity.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/StorageAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMac.build/UninstallService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupRecommendationTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSafetyTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/CleanupSelectionTests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacPackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupRecommendationTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSafetyTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/lucas/Desktop/cleanmymac/Tests/CleanMyMacTests/CleanupSelectionTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/CleanMyMacTests.build/sources"
+    },
+    "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/lucas/Desktop/cleanmymac/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}
