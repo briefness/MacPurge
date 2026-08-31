@@ -60,6 +60,12 @@ struct RootView: View {
         } message: {
             Text("将把 \(model.selectedUninstallCount) 个项目移入 macOS 废纸篓，预计 \(String(format: "%.2f GB", model.selectedUninstallSize))。应用本体和残留均可从废纸篓恢复；系统应用和无法确认归属的项目不会处理。")
         }
+        .alert("恢复默认设置？", isPresented: $model.showResetPreferencesConfirmation) {
+            Button("取消", role: .cancel) { }
+            Button("恢复默认", role: .destructive) { model.resetPreferences() }
+        } message: {
+            Text("将清空保护列表、将项目产物推荐天数恢复为 7 天，并关闭启动时自动扫描。扫描结果、报告文件和已移入废纸篓的项目不会受到影响。")
+        }
     }
 }
 
@@ -1267,12 +1273,28 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 22) {
                 PageHeader(
                     eyebrow: "设置",
-                    title: "让扫描结果符合你的习惯。",
-                    description: "设置只保存在本机，不上传路径、文件名或扫描结果。"
+                    title: "把清理流程调成你的节奏。",
+                    description: "这里的选项都会立即生效，并只保存在本机。路径、文件名和扫描结果不会上传。"
                 ) { EmptyView() }
 
                 VStack(alignment: .leading, spacing: 14) {
-                    Text("项目产物推荐").sectionLabel()
+                    Text("扫描与推荐").sectionLabel()
+                    HStack(spacing: 14) {
+                        Image(systemName: "bolt.horizontal.circle.fill")
+                            .foregroundStyle(.mint)
+                            .frame(width: 34, height: 34)
+                            .background(Color.mint.opacity(0.13), in: RoundedRectangle(cornerRadius: 8))
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("打开应用后自动扫描").font(.system(size: 13, weight: .semibold))
+                            Text("关闭时不会在后台读取文件；你仍可随时手动扫描。")
+                                .font(.system(size: 11)).foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Toggle("自动扫描", isOn: $model.scanOnLaunch)
+                            .labelsHidden().toggleStyle(.switch).tint(.mint)
+                    }
+                    .padding(15).background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 11))
+
                     HStack(spacing: 14) {
                         Image(systemName: "calendar.badge.clock")
                             .foregroundStyle(.indigo)
@@ -1280,7 +1302,7 @@ struct SettingsView: View {
                             .background(Color.indigo.opacity(0.13), in: RoundedRectangle(cornerRadius: 8))
                         VStack(alignment: .leading, spacing: 4) {
                             Text("超过多少天未更新时自动推荐").font(.system(size: 13, weight: .semibold))
-                            Text("仅影响 purge 项目产物；共享缓存仍按风险等级推荐。")
+                            Text("仅影响项目构建产物；共享缓存仍按风险等级推荐。")
                                 .font(.system(size: 11)).foregroundStyle(.secondary)
                         }
                         Spacer()
@@ -1295,17 +1317,55 @@ struct SettingsView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("数据与权限").sectionLabel()
-                    SettingsFact(symbol: "checkmark.shield.fill", title: "本地处理", detail: "扫描、清理报告和保护列表均保存在本机。")
-                    SettingsFact(symbol: "lock.fill", title: "最小权限", detail: "默认只读取当前账号可访问的位置；系统范围扫描需你主动授权。")
-                    SettingsFact(symbol: "arrow.uturn.backward.circle.fill", title: "可恢复清理", detail: "普通清理会移入废纸篓，不执行永久删除。")
+                    Text("权限与保护").sectionLabel()
+                    HStack(spacing: 10) {
+                        SettingsFact(symbol: "lock.fill", title: "完全磁盘访问权限", detail: "用于读取受 macOS 保护的目录和废纸篓。")
+                        Button { model.openSystemSettings() } label: { Label("打开系统设置", systemImage: "arrow.up.forward.app") }
+                            .buttonStyle(.bordered).controlSize(.small)
+                    }
+                    .padding(13).background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 10))
+                    HStack(spacing: 10) {
+                        SettingsFact(symbol: "checkmark.shield.fill", title: "保护列表", detail: "当前已保护 \(model.protectedPaths.count) 个路径。")
+                        Button { model.section = .protected } label: { Label("管理保护路径", systemImage: "chevron.right") }
+                            .buttonStyle(.bordered).controlSize(.small)
+                    }
+                    .padding(13).background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 10))
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("本地数据").sectionLabel()
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("清理与卸载报告").font(.system(size: 13, weight: .semibold))
+                            Text("已保存 \(model.localReportCount) 份报告，仅存放在本机。")
+                                .font(.system(size: 11)).foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Button { model.openReportsFolder() } label: { Label("打开报告目录", systemImage: "folder") }
+                            .buttonStyle(.bordered).controlSize(.small)
+                    }
+                    .padding(13).background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 10))
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("恢复默认设置").font(.system(size: 13, weight: .semibold))
+                            Text("清空保护列表、恢复推荐天数，不删除报告和扫描结果。")
+                                .font(.system(size: 11)).foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Button("恢复默认") { model.showResetPreferencesConfirmation = true }
+                            .buttonStyle(.bordered).controlSize(.small)
+                    }
+                    .padding(13).background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 10))
                 }
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("应用信息").sectionLabel()
                     Text("\(ProductIdentity.displayName) 原生 macOS 版").font(.system(size: 14, weight: .semibold))
-                    Text("个人使用 · 版本 0.1.0 · \(model.systemSummary)")
+                    Text("个人使用 · 版本 \(ProductIdentity.version) · \(model.systemSummary)")
                         .font(.system(size: 11, design: .monospaced)).foregroundStyle(.secondary)
+                    if let message = model.settingsMessage {
+                        Label(message, systemImage: "info.circle.fill").font(.system(size: 11)).foregroundStyle(.mint)
+                    }
                 }
                 .padding(15)
                 .background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 11))

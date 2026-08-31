@@ -152,6 +152,11 @@ final class AppModel: ObservableObject {
     @Published var uninstallWasLimited = false
     @Published var showUninstallConfirmation = false
     @Published var protectedPaths: [String] = []
+    @Published var scanOnLaunch = false {
+        didSet { UserDefaults.standard.set(scanOnLaunch, forKey: scanOnLaunchKey) }
+    }
+    @Published var settingsMessage: String?
+    @Published var showResetPreferencesConfirmation = false
     @Published var artifactRecommendationDays = 7 {
         didSet { UserDefaults.standard.set(artifactRecommendationDays, forKey: artifactRecommendationDaysKey) }
     }
@@ -164,6 +169,7 @@ final class AppModel: ObservableObject {
     private var uninstallTask: Task<Void, Never>?
     private let protectedPathsKey = "cleanmymac.protectedPaths"
     private let artifactRecommendationDaysKey = "cleanmymac.artifactRecommendationDays"
+    private let scanOnLaunchKey = "cleanmymac.scanOnLaunch"
     @Published private(set) var isRefreshingSystemData = false
 
     init() {
@@ -173,8 +179,11 @@ final class AppModel: ObservableObject {
         protectedPaths = UserDefaults.standard.stringArray(forKey: protectedPathsKey) ?? []
         let savedDays = UserDefaults.standard.integer(forKey: artifactRecommendationDaysKey)
         artifactRecommendationDays = savedDays > 0 ? min(savedDays, 30) : 7
+        scanOnLaunch = UserDefaults.standard.bool(forKey: scanOnLaunchKey)
         Task { @MainActor [weak self] in
-            await self?.refreshSystemData()
+            guard let self else { return }
+            await self.refreshSystemData()
+            if self.scanOnLaunch { self.scan() }
         }
     }
 
@@ -195,6 +204,13 @@ final class AppModel: ObservableObject {
     var selectedUninstallSize: Double { selectedUninstallCandidates.reduce(0) { $0 + $1.size } }
     var selectedUninstallCount: Int { selectedUninstallCandidates.count }
     var uninstallReviewCount: Int { installedApplications.reduce(0) { $0 + $1.reviewCount } }
+    var localReportDirectory: URL {
+        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("CleanMyMac/Reports", isDirectory: true)
+    }
+    var localReportCount: Int {
+        (try? FileManager.default.contentsOfDirectory(at: localReportDirectory, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]))?.count ?? 0
+    }
     @Published private(set) var diskUsed: Double?
     @Published private(set) var diskTotal: Double?
     @Published private(set) var memoryUsed: Double?
@@ -702,6 +718,29 @@ final class AppModel: ObservableObject {
         if !NSWorkspace.shared.open(url) {
             permissionMessage = "无法打开系统设置，请手动进入“隐私与安全性 → 完全磁盘访问权限”。"
         }
+    }
+
+    func openReportsFolder() {
+        let fileManager = FileManager.default
+        do {
+            try fileManager.createDirectory(at: localReportDirectory, withIntermediateDirectories: true)
+            NSWorkspace.shared.open(localReportDirectory)
+        } catch {
+            settingsMessage = "无法打开报告目录：\(error.localizedDescription)"
+        }
+    }
+
+    func resetPreferences() {
+        showResetPreferencesConfirmation = false
+        guard !isFilesystemBusy else {
+            settingsMessage = "当前有文件操作正在进行，请完成后再重置设置。"
+            return
+        }
+        protectedPaths = []
+        artifactRecommendationDays = 7
+        scanOnLaunch = false
+        UserDefaults.standard.removeObject(forKey: protectedPathsKey)
+        settingsMessage = "已恢复默认设置；扫描结果和报告文件未被删除。"
     }
 
     func scanApplications() {
