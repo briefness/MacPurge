@@ -4,6 +4,8 @@
 
 > 当前项目定位为个人使用版本，尚未接入自动更新、商业授权、云端同步或远程服务。
 
+项目参考 [MacPaw/cleanmymac-cli](https://github.com/MacPaw/cleanmymac-cli) 的命令设计和功能边界；本项目是独立的原生 SwiftUI/AppKit 实现，不包含或复制上游源码。
+
 ## 功能
 
 | 模块 | 说明 |
@@ -15,6 +17,24 @@
 | 废纸篓 | 查看已移入废纸篓的项目，并在明确确认后永久删除 |
 | 优化维护 | 展示真实系统指标，并在本机存在对应 CLI 时调用受支持的维护命令 |
 | 保护列表 | 配置永不触碰的路径 |
+
+## 软件截图
+
+截图目录已预留在 [`docs/screenshots/`](docs/screenshots/)。请放入真实运行截图后，按以下文件名保存，GitHub 页面会直接展示：
+
+- `overview.png`：总览
+- `clean.png`：清理空间
+- `uninstall.png`：应用卸载
+- `analyze.png`：空间透镜
+
+建议截图使用同一套窗口尺寸，并遮挡个人文件名、路径和其他隐私信息。
+
+<!-- 截图准备好后，取消下面注释即可在 README 展示。
+![总览](docs/screenshots/overview.png)
+![清理空间](docs/screenshots/clean.png)
+![应用卸载](docs/screenshots/uninstall.png)
+![空间透镜](docs/screenshots/analyze.png)
+-->
 
 ### 应用卸载的安全边界
 
@@ -101,7 +121,7 @@ scripts/package-app.sh      # 构建、图标、签名和打包
 
 ## 上游项目说明
 
-项目参考了 [MacPaw/cleanmymac-cli](https://github.com/MacPaw/cleanmymac-cli) 的命令设计。上游 CLI 当前不提供应用卸载命令；本项目的“应用卸载”是独立实现，不会假装调用不存在的 CLI 能力。
+上游 CLI 当前不提供应用卸载命令；本项目的“应用卸载”是独立实现，不会假装调用不存在的 CLI 能力。除可选调用本机已安装的受支持维护命令外，核心扫描、审核和卸载流程均由本项目自行实现。
 
 ## 贡献与问题反馈
 
