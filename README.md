@@ -20,21 +20,23 @@
 
 ## 软件截图
 
-截图目录已预留在 [`docs/screenshots/`](docs/screenshots/)。请放入真实运行截图后，按以下文件名保存，GitHub 页面会直接展示：
+截图目录位于 [`docs/screenshots/`](docs/screenshots/)，以下图片来自应用实际运行界面：
 
 - `overview.png`：总览
 - `clean.png`：清理空间
 - `uninstall.png`：应用卸载
 - `analyze.png`：空间透镜
 
-建议截图使用同一套窗口尺寸，并遮挡个人文件名、路径和其他隐私信息。
+<p align="center">
+  <img src="docs/screenshots/overview.png" alt="总览" width="49%" />
+  <img src="docs/screenshots/clean.png" alt="清理空间" width="49%" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/uninstall.png" alt="应用卸载" width="49%" />
+  <img src="docs/screenshots/analyze.png" alt="空间透镜" width="49%" />
+</p>
 
-<!-- 截图准备好后，取消下面注释即可在 README 展示。
-![总览](docs/screenshots/overview.png)
-![清理空间](docs/screenshots/clean.png)
-![应用卸载](docs/screenshots/uninstall.png)
-![空间透镜](docs/screenshots/analyze.png)
--->
+截图建议使用统一窗口尺寸，并遮挡个人文件名、路径和其他隐私信息。
 
 ### 应用卸载的安全边界
 
