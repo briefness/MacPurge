@@ -81,11 +81,19 @@ enum UninstallService {
                     ?? "未知版本"
                 let isSystem = bundleIdentifier.hasPrefix("com.apple.") || canonical.hasPrefix("/System/")
                 let running = NSWorkspace.shared.runningApplications.contains { $0.bundleIdentifier == bundleIdentifier }
-                let size = bytesToGB(directorySize(url, deadline: deadline).bytes)
+                let appMeasurement = directorySize(url, deadline: deadline)
+                let size = bytesToGB(appMeasurement.bytes)
+                let appWarning = appMeasurement.isTruncated ? "应用目录读取不完整，无法安全评估" : nil
                 var candidates = isSystem ? [blockedApplicationCandidate(url: url, canonical: canonical, size: size, bundleIdentifier: bundleIdentifier)] :
-                    residualCandidates(for: url, canonical: canonical, bundleIdentifier: bundleIdentifier, applicationSize: size, deadline: deadline)
-                if running, !isSystem, let first = candidates.first {
-                    candidates[0] = UninstallCandidate(id: first.id, name: first.name, path: first.path, canonicalPath: first.canonicalPath, category: first.category, size: first.size, evidence: "应用当前正在运行；请先退出应用后再卸载", risk: .review, resourceIdentifier: first.resourceIdentifier, isApplicationBundle: first.isApplicationBundle, scanWarning: first.scanWarning, isSelected: false)
+                    residualCandidates(for: url, canonical: canonical, bundleIdentifier: bundleIdentifier, applicationSize: size, applicationScanWarning: appWarning, deadline: deadline)
+                if running, !isSystem {
+                    for index in candidates.indices {
+                        candidates[index].risk = .blocked
+                        let warnings = ["应用当前正在运行；请先退出应用后再卸载", candidates[index].scanWarning]
+                            .compactMap { $0 }
+                        candidates[index].scanWarning = warnings.joined(separator: "；")
+                        candidates[index].isSelected = false
+                    }
                 }
                 applications.append(InstalledApplication(
                     id: canonical,
@@ -136,10 +144,16 @@ enum UninstallService {
                 failures.append("\(candidate.path)：扫描后路径发生变化")
                 continue
             }
-            if candidate.isApplicationBundle,
-               let bundleIdentifier = Bundle(url: URL(fileURLWithPath: canonical))?.bundleIdentifier,
-               NSWorkspace.shared.runningApplications.contains(where: { $0.bundleIdentifier == bundleIdentifier }) {
+            let runningBundleIdentifier = candidate.owningBundleIdentifier ??
+                (candidate.isApplicationBundle ? Bundle(url: URL(fileURLWithPath: canonical))?.bundleIdentifier : nil)
+            if let runningBundleIdentifier,
+               NSWorkspace.shared.runningApplications.contains(where: { $0.bundleIdentifier == runningBundleIdentifier }) {
                 failures.append("\(candidate.path)：应用仍在运行，请先退出应用后再卸载")
+                continue
+            }
+            if !candidate.isApplicationBundle,
+               let reason = CleanupPathPolicy.unsafeReason(for: canonical) {
+                failures.append("\(candidate.path)：\(reason)")
                 continue
             }
             if let reason = CleanupPathPolicy.protectionReason(for: canonical, protectedPaths: protectedPaths) {
@@ -166,7 +180,7 @@ enum UninstallService {
         return .success(RemovalResult(movedIDs: movedIDs, movedSize: movedSize, failures: failures, reportURL: reportURL))
     }
 
-    private static func residualCandidates(for appURL: URL, canonical: String, bundleIdentifier: String, applicationSize: Double, deadline: Date) -> [UninstallCandidate] {
+    private static func residualCandidates(for appURL: URL, canonical: String, bundleIdentifier: String, applicationSize: Double, applicationScanWarning: String?, deadline: Date) -> [UninstallCandidate] {
         let home = FileManager.default.homeDirectoryForCurrentUser
         let library = home.appendingPathComponent("Library", isDirectory: true)
         let entries: [(String, UninstallCandidateCategory, String, UninstallRisk)] = [
@@ -180,7 +194,7 @@ enum UninstallService {
             ("HTTPStorages/\(bundleIdentifier)", .webData, "HTTP 存储目录名称与应用 Bundle ID 完全一致", .review),
             ("LaunchAgents/\(bundleIdentifier).plist", .loginItem, "登录项文件名与应用 Bundle ID 完全一致，可能影响开机启动", .review)
         ]
-        var candidates = [UninstallCandidate(id: "app-\(canonical)", name: appURL.deletingPathExtension().lastPathComponent, path: CleanupDisplayPath.value(for: canonical), canonicalPath: canonical, category: .application, size: applicationSize, evidence: "扫描到的应用本体；路径位于允许的 Applications 目录", risk: .safe, resourceIdentifier: UninstallPathPolicyResource.identifier(for: appURL), isApplicationBundle: true, scanWarning: nil, isSelected: true)]
+        var candidates = [UninstallCandidate(id: "app-\(canonical)", name: appURL.deletingPathExtension().lastPathComponent, path: CleanupDisplayPath.value(for: canonical), canonicalPath: canonical, category: .application, size: applicationSize, evidence: "扫描到的应用本体；路径位于允许的 Applications 目录", risk: applicationScanWarning == nil ? .safe : .blocked, resourceIdentifier: UninstallPathPolicyResource.identifier(for: appURL), isApplicationBundle: true, owningBundleIdentifier: bundleIdentifier, scanWarning: applicationScanWarning, isSelected: applicationScanWarning == nil)]
         for (relative, category, evidence, risk) in entries {
             guard candidates.count < maxCandidatesPerApp else { break }
             let url = library.appendingPathComponent(relative)
@@ -188,13 +202,13 @@ enum UninstallService {
             let path = UninstallPathPolicy.canonicalPath(url.path)
             let measurement = directorySize(url, deadline: deadline)
             let warning = measurement.isTruncated ? "目录读取不完整，无法安全评估" : nil
-            candidates.append(UninstallCandidate(id: "residual-\(path)", name: url.lastPathComponent, path: CleanupDisplayPath.value(for: path), canonicalPath: path, category: category, size: bytesToGB(measurement.bytes), evidence: evidence, risk: warning == nil ? risk : .blocked, resourceIdentifier: UninstallPathPolicyResource.identifier(for: url), isApplicationBundle: false, scanWarning: warning, isSelected: warning == nil && risk == .safe))
+            candidates.append(UninstallCandidate(id: "residual-\(path)", name: url.lastPathComponent, path: CleanupDisplayPath.value(for: path), canonicalPath: path, category: category, size: bytesToGB(measurement.bytes), evidence: evidence, risk: warning == nil ? risk : .blocked, resourceIdentifier: UninstallPathPolicyResource.identifier(for: url), isApplicationBundle: false, owningBundleIdentifier: bundleIdentifier, scanWarning: warning, isSelected: warning == nil && risk == .safe))
         }
         return candidates
     }
 
     private static func blockedApplicationCandidate(url: URL, canonical: String, size: Double, bundleIdentifier: String) -> UninstallCandidate {
-        UninstallCandidate(id: "blocked-\(canonical)", name: url.deletingPathExtension().lastPathComponent, path: CleanupDisplayPath.value(for: canonical), canonicalPath: canonical, category: .application, size: size, evidence: "系统应用（\(bundleIdentifier)），为避免破坏 macOS 已禁用卸载", risk: .blocked, resourceIdentifier: UninstallPathPolicyResource.identifier(for: url), isApplicationBundle: true, scanWarning: "系统应用不可卸载", isSelected: false)
+        UninstallCandidate(id: "blocked-\(canonical)", name: url.deletingPathExtension().lastPathComponent, path: CleanupDisplayPath.value(for: canonical), canonicalPath: canonical, category: .application, size: size, evidence: "系统应用（\(bundleIdentifier)），为避免破坏 macOS 已禁用卸载", risk: .blocked, resourceIdentifier: UninstallPathPolicyResource.identifier(for: url), isApplicationBundle: true, owningBundleIdentifier: bundleIdentifier, scanWarning: "系统应用不可卸载", isSelected: false)
     }
 
     private static func directorySize(_ url: URL, deadline: Date) -> (bytes: UInt64, isTruncated: Bool) {

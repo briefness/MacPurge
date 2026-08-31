@@ -3,6 +3,26 @@ import XCTest
 @testable import CleanMyMac
 
 final class UninstallSafetyTests: XCTestCase {
+    func testBlockedCandidateCannotBeRemoved() {
+        let candidate = UninstallCandidate(
+            id: "blocked",
+            name: "Example",
+            path: "/Applications/Example.app",
+            canonicalPath: "/Applications/Example.app",
+            category: .application,
+            size: 1,
+            evidence: "测试",
+            risk: .blocked,
+            resourceIdentifier: "id",
+            isApplicationBundle: true,
+            owningBundleIdentifier: nil,
+            scanWarning: "应用当前正在运行",
+            isSelected: false
+        )
+
+        XCTAssertFalse(candidate.canRemove)
+    }
+
     func testOnlyAppsDirectlyInsideAllowedApplicationsRootsAreAccepted() {
         let roots = [URL(fileURLWithPath: "/Applications", isDirectory: true)]
         XCTAssertTrue(UninstallPathPolicy.isApplicationBundle(URL(fileURLWithPath: "/Applications/Example.app"), allowedRoots: roots))

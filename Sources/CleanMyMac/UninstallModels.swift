@@ -50,10 +50,11 @@ struct UninstallCandidate: Identifiable, Hashable, Sendable {
     let category: UninstallCandidateCategory
     let size: Double
     let evidence: String
-    let risk: UninstallRisk
+    var risk: UninstallRisk
     let resourceIdentifier: String?
     let isApplicationBundle: Bool
-    let scanWarning: String?
+    let owningBundleIdentifier: String?
+    var scanWarning: String?
     var isSelected: Bool
 
     var canRemove: Bool { risk != .blocked && scanWarning == nil && resourceIdentifier != nil }

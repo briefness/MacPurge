@@ -156,6 +156,7 @@ struct WindowBar: View {
             Spacer()
             Button { model.scan() } label: { Image(systemName: "arrow.clockwise").font(.system(size: 13, weight: .semibold)).frame(width: 30, height: 30) }
                 .buttonStyle(.plain).background(Color.white.opacity(0.07), in: Circle()).help("扫描 Mac")
+                .accessibilityLabel("扫描 Mac")
                 .disabled(model.isFilesystemBusy)
         }
         .padding(.horizontal, 20).padding(.vertical, 13)
@@ -278,6 +279,7 @@ struct PermissionCard: View {
                 .buttonStyle(.bordered)
                 .controlSize(.small)
                 .help("重新检测权限")
+                .accessibilityLabel("重新检测权限")
             }
 
             if let message = model.permissionMessage {
@@ -786,7 +788,7 @@ struct UninstallCandidateRow: View {
     let candidate: UninstallCandidate
     var body: some View {
         HStack(spacing: 10) {
-            Button { model.toggleUninstallCandidate(appID: appID, candidateID: candidate.id) } label: { Image(systemName: candidate.isSelected ? "checkmark.circle.fill" : "circle").font(.system(size: 16)).foregroundStyle(candidate.isSelected ? Color.mint : Color.secondary) }.buttonStyle(.plain).disabled(!candidate.canRemove)
+            Button { model.toggleUninstallCandidate(appID: appID, candidateID: candidate.id) } label: { Image(systemName: candidate.isSelected ? "checkmark.circle.fill" : "circle").font(.system(size: 16)).foregroundStyle(candidate.isSelected ? Color.mint : Color.secondary) }.buttonStyle(.plain).accessibilityLabel(candidate.isSelected ? "取消选择 \(candidate.name)" : "选择 \(candidate.name)").disabled(!candidate.canRemove)
             Image(systemName: candidate.category.symbol).font(.system(size: 12, weight: .semibold)).foregroundStyle(candidate.risk == .safe ? Color.mint : candidate.risk == .review ? Color.orange : Color.red).frame(width: 20)
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 7) { Text(candidate.category.rawValue).font(.system(size: 11, weight: .semibold)); Text(candidate.risk.rawValue).font(.system(size: 9, weight: .medium)).foregroundStyle(candidate.risk == .safe ? Color.mint : candidate.risk == .review ? Color.orange : Color.red) }
@@ -796,7 +798,7 @@ struct UninstallCandidateRow: View {
             }
             Spacer()
             Text(detailStorageSize(candidate.size)).font(.system(size: 11, weight: .semibold, design: .monospaced))
-            Button { model.openPathInFinder(candidate.path) } label: { Image(systemName: "folder") }.buttonStyle(.bordered).controlSize(.small).help("在访达中显示此位置")
+            Button { model.openPathInFinder(candidate.path) } label: { Image(systemName: "folder") }.buttonStyle(.bordered).controlSize(.small).help("在访达中显示此位置").accessibilityLabel("在访达中显示 \(candidate.name)")
         }.padding(.horizontal, 12).padding(.vertical, 9).background(Color.white.opacity(0.025), in: RoundedRectangle(cornerRadius: 8)).padding(.trailing, 12)
     }
 }
@@ -888,7 +890,7 @@ struct TrashView: View {
                                     Spacer()
                                     Text(detailStorageSize(entry.size)).font(.system(size: 11, weight: .semibold, design: .monospaced))
                                     Button { model.openPathInFinder(entry.path) } label: { Image(systemName: "folder") }
-                                        .buttonStyle(.bordered).controlSize(.small).help("在访达中显示")
+                                        .buttonStyle(.bordered).controlSize(.small).help("在访达中显示").accessibilityLabel("在访达中显示 \(entry.name)")
                                 }
                                 .padding(13).background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 10))
                             }
@@ -1229,6 +1231,7 @@ struct ProtectedView: View {
                     newPath = ""
                 } label: { Image(systemName: "plus").frame(width: 38, height: 38) }
                     .buttonStyle(.borderedProminent).tint(.mint).foregroundStyle(.black)
+                    .accessibilityLabel("添加保护路径")
                     .disabled(newPath.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
             if model.protectedPaths.isEmpty {
@@ -1252,7 +1255,7 @@ struct ProtectedView: View {
                                 model.protectedPaths.removeAll { $0 == path }
                                 UserDefaults.standard.set(model.protectedPaths, forKey: "cleanmymac.protectedPaths")
                             } label: { Image(systemName: "trash").foregroundStyle(.secondary) }
-                                .buttonStyle(.plain).help("移除保护路径")
+                                .buttonStyle(.plain).help("移除保护路径").accessibilityLabel("移除保护路径 \(path)")
                         }
                         .padding(14).background(Color.cmmCard, in: RoundedRectangle(cornerRadius: 11))
                     }

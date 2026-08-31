@@ -67,6 +67,11 @@ private struct TrashScanResult: Sendable {
     let accessDenied: Bool
 }
 
+private struct MatchingURLsResult: Sendable {
+    let urls: [URL]
+    let wasLimited: Bool
+}
+
 private struct AnalyzerMoveOutcome: Sendable {
     let errorMessage: String?
 }
@@ -595,9 +600,10 @@ final class AppModel: ObservableObject {
                     break groupLoop
                 }
                 let expandedPath = (item.path as NSString).expandingTildeInPath
-                let urls = expandedPath.contains("*")
+                let matching = expandedPath.contains("*")
                     ? matchingURLs(for: expandedPath, fileManager: fileManager)
-                    : (fileManager.fileExists(atPath: expandedPath) ? [URL(fileURLWithPath: expandedPath)] : [])
+                    : MatchingURLsResult(urls: fileManager.fileExists(atPath: expandedPath) ? [URL(fileURLWithPath: expandedPath)] : [], wasLimited: false)
+                let urls = matching.urls
                 let safeURLs = urls.filter { url in
                     if item.id == "xcode-derived", url.lastPathComponent == "ModuleCache.noindex" { return false }
                     guard let values = try? url.resourceValues(forKeys: [.isSymbolicLinkKey]), values.isSymbolicLink != true else { return false }
@@ -613,6 +619,11 @@ final class AppModel: ObservableObject {
                     copy.resourceIdentifier = CleanupPathPolicy.resourceIdentifier(for: url)
                     if copy.resourceIdentifier == nil {
                         copy.scanWarning = "无法建立文件身份标识；为避免扫描后路径被替换，此项不可清理"
+                    }
+                    if matching.wasLimited {
+                        copy.scanWarning = [copy.scanWarning, "匹配结果达到安全上限，当前结果不完整"]
+                            .compactMap { $0 }
+                            .joined(separator: "；")
                     }
                     copy.modifiedAt = try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
                     if let project = projectName(in: url) {
@@ -850,8 +861,8 @@ final class AppModel: ObservableObject {
                 self.uninstallReportPath = CleanupDisplayPath.value(for: outcome.reportURL.path)
                 self.uninstallMessageIsError = !outcome.failures.isEmpty
                 self.uninstallMessage = outcome.failures.isEmpty
-                    ? "已将 (outcome.movedIDs.count) 个项目移入废纸篓，可随时恢复。"
-                    : "已移入废纸篓 (outcome.movedIDs.count) 个项目；(outcome.failures.count) 个项目未处理，请查看报告。"
+                    ? "已将 \(outcome.movedIDs.count) 个项目移入废纸篓，可随时恢复。"
+                    : "已移入废纸篓 \(outcome.movedIDs.count) 个项目；\(outcome.failures.count) 个项目未处理，请查看报告。"
             case .failure(let error):
                 self.uninstallMessageIsError = true
                 self.uninstallMessage = "卸载准备失败：\(error.localizedDescription)。未修改任何文件。"
@@ -919,9 +930,10 @@ final class AppModel: ObservableObject {
     func openPathInFinder(_ path: String) {
         let expandedPath = (path as NSString).expandingTildeInPath
         let fileManager = FileManager.default
-        let matches = expandedPath.contains("*")
+        let matching = expandedPath.contains("*")
             ? Self.matchingURLs(for: expandedPath, fileManager: fileManager)
-            : (fileManager.fileExists(atPath: expandedPath) ? [URL(fileURLWithPath: expandedPath)] : [])
+            : MatchingURLsResult(urls: fileManager.fileExists(atPath: expandedPath) ? [URL(fileURLWithPath: expandedPath)] : [], wasLimited: false)
+        let matches = matching.urls
 
         if !matches.isEmpty {
             NSWorkspace.shared.activateFileViewerSelecting(Array(matches.prefix(50)))
@@ -1229,9 +1241,11 @@ final class AppModel: ObservableObject {
         return fileManager.fileExists(atPath: candidate.path) ? candidate : nil
     }
 
-    private nonisolated static func matchingURLs(for path: String, fileManager: FileManager) -> [URL] {
+    private nonisolated static func matchingURLs(for path: String, fileManager: FileManager) -> MatchingURLsResult {
+        let maxMatches = 10_000
         let components = URL(fileURLWithPath: path).pathComponents
         var candidates: [URL] = [URL(fileURLWithPath: "/")]
+        var wasLimited = false
 
         for component in components.dropFirst() {
             if component.contains("*") {
@@ -1239,6 +1253,11 @@ final class AppModel: ObservableObject {
                 for candidate in candidates {
                     guard let children = try? fileManager.contentsOfDirectory(at: candidate, includingPropertiesForKeys: [.isDirectoryKey], options: []) else { continue }
                     next.append(contentsOf: children.filter { Self.matchesGlob($0.lastPathComponent, pattern: component) })
+                    if next.count >= maxMatches {
+                        wasLimited = true
+                        next = Array(next.prefix(maxMatches))
+                        break
+                    }
                 }
                 candidates = next
             } else {
@@ -1246,7 +1265,7 @@ final class AppModel: ObservableObject {
             }
             if candidates.isEmpty { break }
         }
-        return candidates
+        return MatchingURLsResult(urls: candidates, wasLimited: wasLimited)
     }
 
     private nonisolated static func matchesGlob(_ value: String, pattern: String) -> Bool {

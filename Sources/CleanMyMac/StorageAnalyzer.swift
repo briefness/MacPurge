@@ -36,6 +36,7 @@ enum StorageAnalyzerError: LocalizedError {
 
 enum StorageAnalyzer {
     private static let maxVisitedEntries = 200_000
+    private static let maxTopLevelEntries = 20_000
     private static let maxMeasurementDuration: TimeInterval = 5
     private static let maxScanDuration: TimeInterval = 30
 
@@ -52,15 +53,21 @@ enum StorageAnalyzer {
             .fileAllocatedSizeKey, .fileSizeKey, .fileResourceIdentifierKey,
             .volumeIdentifierKey
         ]
-        guard let children = try? fileManager.contentsOfDirectory(
+        guard let listedChildren = try? fileManager.contentsOfDirectory(
             at: root,
             includingPropertiesForKeys: keys,
             options: []
         ) else { throw StorageAnalyzerError.unreadable }
 
+        // Bound the amount of work retained from very large directories. The
+        // snapshot is explicitly marked incomplete so callers cannot offer
+        // destructive actions based on a partial listing.
+        let children = Array(listedChildren.prefix(maxTopLevelEntries))
+        let listingWasLimited = listedChildren.count > maxTopLevelEntries
+
         let rootVolume = (try? root.resourceValues(forKeys: [.volumeIdentifierKey]))?.volumeIdentifier
         let deadline = Date().addingTimeInterval(maxScanDuration)
-        var scanTruncated = false
+        var scanTruncated = listingWasLimited
         var entries: [AnalyzerEntry] = []
         for url in children {
             if Task.isCancelled || Date() >= deadline {
@@ -98,7 +105,7 @@ enum StorageAnalyzer {
                 resourceIdentifier: values.fileResourceIdentifier.map { String(describing: $0) },
                 size: Double(measurement.bytes) / 1_000_000_000,
                 isDirectory: values.isDirectory == true,
-                isTruncated: measurement.isTruncated,
+                isTruncated: measurement.isTruncated || listingWasLimited,
                 isProtected: isProtected
             ))
             if measurement.isTruncated { scanTruncated = true }
